@@ -9,7 +9,11 @@ const bodyParser = require ('body-parser'); //used to parse the request body tha
 const expressSession = require('express-session')({ //save the session cookie.
     secret: 'secret',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
+    cookie: {
+        secure: false,
+        maxAge: 60000
+    }
 });
 
 app.use(bodyParser.json());
@@ -100,10 +104,10 @@ app.get('/logout', (req,res) => {
 });
 
 
-/*REGISTER SOME USERS*/ 
-UserDetails.register({username: 'paul', active: false}, 'paul');
-UserDetails.register({username: 'joy', active: false}, 'joy');
-UserDetails.register({username: 'ray', active: false}, 'ray');
+// /*REGISTER SOME USERS*/  //Only need to do it once and then comment out
+// UserDetails.register({username: 'paul', active: false}, 'paul');
+// UserDetails.register({username: 'joy', active: false}, 'joy');
+// UserDetails.register({username: 'ray', active: false}, 'ray');
 
 
  
